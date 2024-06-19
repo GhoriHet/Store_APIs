@@ -6,14 +6,13 @@ const storage = multer.diskStorage({
         cb(null, './public/temp')
     },
     filename: function (req, file, cb) {
-        // console.log(file);
-        const ext = path.extname(file.originalname);
-        if (ext !== '.jpg') {
-            cb('Only png File Upload')
-        } else {
+        const pathShow = path.extname(file.originalname);
+
+        if (pathShow === '.png' || pathShow === '.jpg' || pathShow === '.jpeg') {
             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-            // cb(null, file.originalname + '-' + uniqueSuffix)
             cb(null, file.fieldname + '-' + uniqueSuffix)
+        } else {
+            cb("Only png, jpg and jpeg file allowed.")
         }
     }
 })

@@ -1,5 +1,5 @@
 const cloudinary = require('cloudinary');
-const fs = require('fs');
+const fs = require('fs')
 
 cloudinary.config({
     cloud_name: 'dd0o7ffpa',
@@ -11,11 +11,11 @@ const uploadFile = async (filePath) => {
     try {
         const result = await cloudinary.uploader.upload(filePath);
 
-        fs.unlinkSync(filePath);
+        fs.unlinkSync(filePath)
+
         return result
     } catch (error) {
-        console.log("Error uploading file to Cloudinary:", error);
-        throw error;
+        console.log(error)
     }
 }
 
