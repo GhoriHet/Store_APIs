@@ -1,8 +1,16 @@
-const CategoriesModels = require("../models/categories.model")
+const CategoriesModels = require("../models/categories.model");
+const { uploadFile } = require("../services/cloudinary");
 
 const createCategories = async (request, response) => {
     try {
-        const CreateCategory = await CategoriesModels.create(request.body);
+        const path = await uploadFile(request.file.path);
+
+        const avatar = {
+            public_id: path.public_id,
+            url: path.url
+        }
+
+        const CreateCategory = await CategoriesModels.create({ ...request.body, avatar });
 
         if (!CreateCategory) {
             return response.status(500).json({
@@ -12,7 +20,7 @@ const createCategories = async (request, response) => {
 
         return response.status(200).json({
             success: true,
-            data: request.body,
+            data: CreateCategory,
             message: 'Category Data Added Successfully!'
         });
 

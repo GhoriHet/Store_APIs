@@ -3,8 +3,10 @@ const router = express.Router();
 const validate = require("../middleware/validate");
 const { categoryValidation } = require('../validation/validation_index');
 const { categoryController } = require('../controller/controller_index');
+const upload = require('../services/upload');
 
 router.post('/create-category',
+    upload.single('avatar'),
     validate(categoryValidation.createCategory),
     categoryController.createCategories
 )

@@ -12,5 +12,5 @@ const routs = require('./routes/routes_index');
 app.use('/api', routs);
 
 app.listen(3000, () => {
-    console.log('Server Started on port 3000.');
+    console.log('* Server Started on port 3000.');
 });

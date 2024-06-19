@@ -4,13 +4,13 @@ const createCategory = {
     body: {
         category_name: Joi.string().required().trim(),
         category_desc: Joi.string().required().trim(),
-        category_image: Joi.string().required().trim(),
+        // category_image: Joi.string().required().trim(),
         isActive: Joi.boolean()
     }
 }
 const updateCategory = {
     body: {
-        category_image: Joi.string().trim(),
+        // category_image: Joi.string().trim(),
         category_name: Joi.string().trim(),
         category_desc: Joi.string().trim(),
         isActive: Joi.boolean()

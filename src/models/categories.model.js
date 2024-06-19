@@ -14,9 +14,16 @@ const categoriesSchema = new mongoose.Schema(
             trim: true
         },
 
-        category_image: {
-            type: String,
-            required: true
+        // category_image: {
+        //     type: String,
+        //     // required: true
+        // },
+
+        avatar: {
+            type: {
+                public_id: String,
+                url: String
+            }
         },
 
         isActive: {
