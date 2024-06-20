@@ -14,21 +14,15 @@ const categoriesSchema = new mongoose.Schema(
             trim: true
         },
 
-        // category_image: {
-        //     type: String,
-        //     // required: true
-        // },
-
-        avatar: {
-            type: {
-                public_id: String,
-                url: String
-            }
-        },
+        avatar: [{
+            public_id: String,
+            url: String,
+            originalname: String
+        }],
 
         isActive: {
             type: Boolean,
-            required: true, 
+            required: true,
             default: true
         }
     },

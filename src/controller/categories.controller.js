@@ -3,24 +3,37 @@ const { uploadFile } = require("../services/cloudinary");
 
 const createCategories = async (request, response) => {
     try {
-        const path = await uploadFile(request.file.path);
-
-        const avatar = {
-            public_id: path.public_id,
-            url: path.url
+        const files = request.files;
+        if (!files || files.length === 0) {
+            return response.status(400).json({ message: 'No files uploaded!' });
         }
 
-        const CreateCategory = await CategoriesModels.create({ ...request.body, avatar });
+        const uploadPromises = files.map(file => uploadFile(file.path));
+        const uploadResults = await Promise.all(uploadPromises);
 
-        if (!CreateCategory) {
+        const avatar = uploadResults.map((result, index) => ({
+            public_id: result.public_id,
+            url: result.url,
+            originalname: files[index].originalname
+        }));
+        console.log(avatar)
+
+        const createCategory = await CategoriesModels.create({
+            ...request.body,
+            avatar
+        });
+
+        console.log(createCategory)
+
+        if (!createCategory) {
             return response.status(500).json({
                 message: 'Internal Server Error!'
-            })
-        };
+            });
+        }
 
         return response.status(200).json({
             success: true,
-            data: CreateCategory,
+            data: createCategory,
             message: 'Category Data Added Successfully!'
         });
 
@@ -29,7 +42,7 @@ const createCategories = async (request, response) => {
             message: 'Internal Server Error!'
         });
     }
-}
+};
 
 const getCategories = async (request, response) => {
     try {

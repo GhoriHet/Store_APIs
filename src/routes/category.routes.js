@@ -6,10 +6,10 @@ const { categoryController } = require('../controller/controller_index');
 const upload = require('../services/upload');
 
 router.post('/create-category',
-    upload.single('avatar'),
+    upload.array('avatar', 12),
     validate(categoryValidation.createCategory),
     categoryController.createCategories
-)
+);
 
 router.get('/list-category',
     categoryController.getCategories
