@@ -20,10 +20,11 @@ const subCategoriesSchema = new mongoose.Schema(
             trim: true
         },
 
-        subcategory_image: {
-            type: String,
-            required: true
-        },
+        avatar: [{
+            public_id: String,
+            url: String,
+            originalname: String
+        }],
 
         isActive: {
             type: Boolean,

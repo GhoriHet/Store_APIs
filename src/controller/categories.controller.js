@@ -16,14 +16,11 @@ const createCategories = async (request, response) => {
             url: result.url,
             originalname: files[index].originalname
         }));
-        console.log(avatar)
 
         const createCategory = await CategoriesModels.create({
             ...request.body,
             avatar
         });
-
-        console.log(createCategory)
 
         if (!createCategory) {
             return response.status(500).json({
