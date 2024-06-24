@@ -15,11 +15,15 @@ const getProduct = {
 }
 
 const deleteProduct = {
-    params: Joi.object().keys()
+    params: {
+        productId: Joi.string().required().trim()
+    }
 }
 
 const updateProduct = {
-    params: Joi.object().keys()
+    params: {
+        productId: Joi.string().required().trim()
+    }
 }
 
 module.exports = {

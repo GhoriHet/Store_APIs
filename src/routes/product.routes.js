@@ -11,18 +11,18 @@ router.post('/create-product',
     productController.createProduct
 );
 
-// router.get('/list-category',
-//     categoryController.getCategories
-// )
+router.get('/list-product',
+    productController.getProduct
+)
 
-// router.put('/update-category/:categoryId',
-//     validate(categoryValidation.updateCategory),
-//     categoryController.updateCategories
-// )
+router.put('/update-product/:productId',
+    validate(productValidation.updateProduct),
+    productController.putProduct
+)
 
-// router.delete('/delete-category/:categoryId',
-//     validate(categoryValidation.deleteCategory),
-//     categoryController.deleteCategories
-// )
+router.delete('/delete-product/:productId',
+    validate(productValidation.deleteProduct),
+    productController.deleteProduct
+)
 
 module.exports = router;
